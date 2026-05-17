@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <title>Matematika Ime</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3c72;
+    }
+
+    .menu {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: #1e3c72;
+      color: white;
+      cursor: pointer;
+    }
+
+    .box {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .box button {
+      background: #1e3c72;
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<h1>Matematika Ime</h1>
+
+<div class="menu">
+
+  <button onclick="showSection('calculator')">
+    Kalkulator
+  </button>
+
+  <button onclick="showSection('units')">
+    Njësi Matëse
+  </button>
+
+  <button onclick="showSection('geometry')">
+    Gjeometri
+  </button>
+
+  <button onclick="showSection('trigonometry')">
+    Trigonometri
+  </button>
+
+  <button onclick="showSection('statistics')">
+    Statistikë
+  </button>
+
+</div>
+
+<!-- KALKULATORI -->
+
+<div class="box active" id="calculator">
+
+  <h2>Kalkulator Bazë</h2>
+
+  <input
+    type="number"
+    id="firstNumber"
+    placeholder="Numri i parë"
+  >
+
+  <input
+    type="number"
+    id="secondNumber"
+    placeholder="Numri i dytë"
+  >
+
+  <select id="operation">
+
+    <option value="+">Mbledhje</option>
+
+    <option value="-">Zbritje</option>
+
+    <option value="*">Shumëzim</option>
+
+    <option value="/">Pjesëtim</option>
+
+  </select>
+
+  <button onclick="calculateBasic()">
+    Llogarit
+  </button>
+
+  <div
+    class="result"
+    id="calculatorResult"
+  ></div>
+
+</div>
+
+<!-- NJESITE MATESE -->
+
+<div class="box" id="units">
+
+  <h2>Konvertues Njësish Matëse</h2>
+
+  <input
+    type="number"
+    id="unitValue"
+    placeholder="Shkruaj vlerën"
+  >
+
+  <select id="fromUnit">
+
+    <option value="km">Kilometër (km)</option>
+
+    <option value="m">Metër (m)</option>
+
+    <option value="dm">Decimetër (dm)</option>
+
+    <option value="cm">Centimetër (cm)</option>
+
+    <option value="mm">Milimetër (mm)</option>
+
+    <option value="kg">Kilogram (kg)</option>
+
+    <option value="g">Gram (g)</option>
+
+    <option value="mg">Miligram (mg)</option>
+
+    <option value="l">Litër (l)</option>
+
+    <option value="ml">Mililitër (ml)</option>
+
+  </select>
+
+  <select id="toUnit">
+
+    <option value="km">Kilometër (km)</option>
+
+    <option value="m">Metër (m)</option>
+
+    <option value="dm">Decimetër (dm)</option>
+
+    <option value="cm">Centimetër (cm)</option>
+
+    <option value="mm">Milimetër (mm)</option>
+
+    <option value="kg">Kilogram (kg)</option>
+
+    <option value="g">Gram (g)</option>
+
+    <option value="mg">Miligram (mg)</option>
+
+    <option value="l">Litër (l)</option>
+
+    <option value="ml">Mililitër (ml)</option>
+
+  </select>
+
+  <button onclick="convertUnits()">
+    Konverto
+  </button>
+
+  <div
+    class="result"
+    id="unitResult"
+  ></div>
+
+</div>
+
+<!-- GJEOMETRIA -->
+
+<div class="box" id="geometry">
+
+  <h2>Syprinë dhe Perimetër</h2>
+
+  <select id="shape">
+
+    <option value="square">Katror</option>
+
+    <option value="rectangle">Drejtkëndësh</option>
+
+    <option value="triangle">Trekëndësh</option>
+
+    <option value="circle">Rreth</option>
+
+  </select>
+
+  <input
+    type="number"
+    id="valueA"
+    placeholder="Vlera e parë"
+  >
+
+  <input
+    type="number"
+    id="valueB"
+    placeholder="Vlera e dytë"
+  >
+
+  <input
+    type="number"
+    id="valueC"
+    placeholder="Vlera e tretë"
+  >
+
+  <button onclick="calculateGeometry()">
+    Llogarit
+  </button>
+
+  <div
+    class="result"
+    id="geometryResult"
+  ></div>
+
+</div>
+
+<!-- TRIGONOMETRIA -->
+
+<div class="box" id="trigonometry">
+
+  <h2>Sin, Cos, Tan</h2>
+
+  <input
+    type="number"
+    id="angle"
+    placeholder="Shkruaj këndin në gradë"
+  >
+
+  <button onclick="calculateTrigonometry()">
+    Llogarit
+  </button>
+
+  <div
+    class="result"
+    id="trigonometryResult"
+  ></div>
+
+</div>
+
+<!-- STATISTICS -->
+
+<div class="box" id="statistics">
+
+  <h2>Statistikë Bazë</h2>
+
+  <input
+    type="text"
+    id="numbers"
+    placeholder="p.sh: 2, 4, 6, 8, 10..."
+  >
+
+  <button onclick="calculateStatistics()">
+    Llogarit
+  </button>
+
+  <div
+    class="result"
+    id="statisticsResult"
+  ></div>
+
+</div>
+
+<script>
+
+  function showSection(id) {
+
+    let sections =
+      document.getElementsByClassName("box");
+
+    for (let i = 0; i < sections.length; i++) {
+
+      sections[i].classList.remove("active");
+
+    }
+
+    document.getElementById(id)
+      .classList.add("active");
+
+  }
+
+  function calculateBasic() {
+
+    let first =
+      Number(
+        document.getElementById("firstNumber").value
+      );
+
+    let second =
+      Number(
+        document.getElementById("secondNumber").value
+      );
+
+    let operation =
+      document.getElementById("operation").value;
+
+    let result;
+
+    if (operation == "+") {
+
+      result = first + second;
+
+    }
+
+    if (operation == "-") {
+
+      result = first - second;
+
+    }
+
+    if (operation == "*") {
+
+      result = first * second;
+
+    }
+
+    if (operation == "/") {
+
+      result = first / second;
+
+    }
+
+    document.getElementById("calculatorResult")
+      .innerHTML =
+      "Rezultati: " + result;
+
+  }
+
+  function convertUnits() {
+
+    let value =
+      Number(
+        document.getElementById("unitValue").value
+      );
+
+    let from =
+      document.getElementById("fromUnit").value;
+
+    let to =
+      document.getElementById("toUnit").value;
+
+    let lengthUnits = {
+
+      km: 1000,
+      m: 1,
+      dm: 0.1,
+      cm: 0.01,
+      mm: 0.001
+
+    };
+
+    let weightUnits = {
+
+      kg: 1000,
+      g: 1,
+      mg: 0.001
+
+    };
+
+    let volumeUnits = {
+
+      l: 1,
+      ml: 0.001
+
+    };
+
+    let result = "";
+
+    if (lengthUnits[from] && lengthUnits[to]) {
+
+      result =
+        (value * lengthUnits[from]) /
+        lengthUnits[to];
+
+    }
+
+    else if (weightUnits[from] && weightUnits[to]) {
+
+      result =
+        (value * weightUnits[from]) /
+        weightUnits[to];
+
+    }
+
+    else if (volumeUnits[from] && volumeUnits[to]) {
+
+      result =
+        (value * volumeUnits[from]) /
+        volumeUnits[to];
+
+    }
+
+    else {
+
+      document.getElementById("unitResult")
+        .innerHTML =
+        "Njësitë nuk përputhen.";
+
+      return;
+
+    }
+
+    document.getElementById("unitResult")
+      .innerHTML =
+      value + " " + from +
+      " = " +
+      result + " " + to;
+
+  }
+
+  function calculateGeometry() {
+
+    let shape =
+      document.getElementById("shape").value;
+
+    let a =
+      Number(
+        document.getElementById("valueA").value
+      );
+
+    let b =
+      Number(
+        document.getElementById("valueB").value
+      );
+
+    let c =
+      Number(
+        document.getElementById("valueC").value
+      );
+
+    let syp = 0;
+
+    let perimeter = 0;
+
+    if (shape == "square") {
+
+      syp = a * a;
+
+      perimeter = 4 * a;
+
+    }
+
+    if (shape == "rectangle") {
+
+      syp = a * b;
+
+      perimeter = 2 * (a + b);
+
+    }
+
+    if (shape == "triangle") {
+
+      syp = (a * b) / 2;
+
+      perimeter = a + b + c;
+
+    }
+
+    if (shape == "circle") {
+
+      syp = 3.14 * a * a;
+
+      perimeter = 2 * 3.14 * a;
+
+    }
+
+    document.getElementById("geometryResult")
+      .innerHTML =
+
+      "Sipërfaqja: " +
+      syp.toFixed(2) +
+
+      "<br>Perimetri: " +
+
+      perimeter.toFixed(2);
+
+  }
+
+  function calculateTrigonometry() {
+
+    let angle =
+      Number(
+        document.getElementById("angle").value
+      );
+
+    let radians =
+      angle * Math.PI / 180;
+
+    let sin =
+      Math.sin(radians);
+
+    let cos =
+      Math.cos(radians);
+
+    let tan =
+      Math.tan(radians);
+
+    document.getElementById("trigonometryResult")
+      .innerHTML =
+
+      "sin = " +
+      sin.toFixed(2) +
+
+      "<br>cos = " +
+
+      cos.toFixed(2) +
+
+      "<br>tan = " +
+
+      tan.toFixed(2);
+
+  }
+
+  function calculateStatistics() {
+
+    let text =
+      document.getElementById("numbers").value;
+
+    let list =
+      text.split(",").map(Number);
+
+    list.sort(function(a, b) {
+
+      return a - b;
+
+    });
+
+    let sum = 0;
+
+    for (let i = 0; i < list.length; i++) {
+
+      sum = sum + list[i];
+
+    }
+
+    let average =
+      sum / list.length;
+
+    let middle =
+      Math.floor(list.length / 2);
+
+    let median;
+
+    if (list.length % 2 == 1) {
+
+      median = list[middle];
+
+    }
+
+    else {
+
+      median =
+        (list[middle - 1] + list[middle]) / 2;
+
+    }
+
+    let min = list[0];
+
+    let max =
+      list[list.length - 1];
+
+    document.getElementById("statisticsResult")
+      .innerHTML =
+
+      "Mesatarja: " +
+      average.toFixed(2) +
+
+      "<br>Mesorja: " +
+
+      median +
+
+      "<br>Numri më i vogël: " +
+
+      min +
+
+      "<br>Numri më i madh: " +
+
+      max;
+
+  }
+
+</script>
+
+</body>
+</html>
